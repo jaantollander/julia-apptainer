@@ -10,7 +10,7 @@ From: images/julia.sif
 
 %post
     export JULIA_DEPOT_PATH="/usr/local/julia/local/share/julia"
-    julia --project="/opt/." -e 'using Pkg; Pkg.activate(); Pkg.instantiate()'
+    julia --project="/opt/." -e 'using Pkg; Pkg.instantiate()'
 
 %runscript
     julia --project="/opt/." "/opt/src/cli.jl" "$@"
