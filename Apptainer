@@ -1,0 +1,16 @@
+Bootstrap: localimage
+From: images/julia.sif
+
+%files
+    Apptainer
+    Project.toml /opt/Project.toml
+    Manifest.toml /opt/Manifest.toml
+    src/cli.jl /opt/src/cli.jl
+    src/App.jl /opt/src/App.jl
+
+%post
+    export JULIA_DEPOT_PATH="/usr/local/julia/local/share/julia"
+    julia --project="/opt/." -e 'using Pkg; Pkg.activate(); Pkg.instantiate()'
+
+%runscript
+    julia --project="/opt/." "/opt/src/cli.jl" "$@"
